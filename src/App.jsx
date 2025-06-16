@@ -7,8 +7,15 @@ export const App = () => {
 	const [steps, setSteps] = useState(data);
 	const [activeIndex, setActiveIndex] = useState(6);
 
-	// И определить 3 обработчика: Клик назад, Клик вперед, Начать сначала
-
+	const onButtonBackClick = () => {
+		setActiveIndex(activeIndex - 1);
+	};
+	const onButtonForwardClick = () => {
+		setActiveIndex(activeIndex + 1);
+	};
+	const onButtonRestartClick = () => {
+		setActiveIndex(0);
+	};
 	const isFirstStep = activeIndex === 0 ? true : false;
 	const isLastStep = activeIndex === steps.length - 1 ? true : false;
 
@@ -46,13 +53,20 @@ export const App = () => {
 						})}
 					</ul>
 					<div className={styles['buttons-container']}>
-						<button className={styles.button} disabled={isFirstStep}>
+						<button
+							className={styles.button}
+							disabled={isFirstStep}
+							onClick={onButtonBackClick}
+						>
 							Назад
 						</button>
-						<button className={styles.button}>
+						<button
+							className={styles.button}
+							onClick={
+								isLastStep ? onButtonRestartClick : onButtonForwardClick
+							}
+						>
 							{isLastStep ? 'Начать сначала' : 'Далее'}
-							{/* "Начать сначала", можно сделать этой же кнопкой, просто подменять обработчик и текст в зависимости от условия */}
-							{/* Или заменять всю кнопку в зависимости от условия */}
 						</button>
 					</div>
 				</div>
