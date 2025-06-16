@@ -16,6 +16,10 @@ export const App = () => {
 	const onButtonRestartClick = () => {
 		setActiveIndex(0);
 	};
+	const onStepButtonClick = (event) => {
+		setActiveIndex(event.target.dataset.id - 1);
+	};
+
 	const isFirstStep = activeIndex === 0 ? true : false;
 	const isLastStep = activeIndex === steps.length - 1 ? true : false;
 
@@ -43,8 +47,11 @@ export const App = () => {
 										styles['steps-item']
 									}
 								>
-									{/* При клике на кнопку установка выбранного шага в качестве активного */}
-									<button className={styles['steps-item-button']}>
+									<button
+										className={styles['steps-item-button']}
+										onClick={onStepButtonClick}
+										data-id={Number(id)}
+									>
 										{Number(id)}
 									</button>
 									{title}
