@@ -5,7 +5,7 @@ import data from './data.json';
 
 export const App = () => {
 	const [steps, setSteps] = useState(data);
-	const [activeIndex, setActiveIndex] = useState(6);
+	const [activeIndex, setActiveIndex] = useState(0);
 
 	const onButtonBackClick = () => {
 		setActiveIndex(activeIndex - 1);
